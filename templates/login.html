@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <title>Admin pannel</title>
+
+    <!-- CSS only -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+
+
+
+    <!-- Bootstrap core CSS -->
+
+    <!-- Custom styles for this template -->
+    
+  </head>
+  <body class="text-center">
+<link href="{{url_for('static',filename='CSS/signin.css')}}" rel="stylesheet">
+
+{% set fname ='img/'+params['login_image']%}
+
+    <form class="form-signin" action="/dashboard" method="post"> 
+        <img class="mb-4" src="{{url_for('static',filename=fname)}}" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">Admin log in </h1>
+        <label for="uname" class="sr-only">User name</label>
+        <input type="text" id="uname" name="uname" class="form-control" placeholder="User name" required autofocus>
+        <label for="Pass" class="sr-only">Password</label>
+        <input type="password" id="Pass" name="pass" class="form-control" placeholder="Password" required>
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <p class="mt-5 mb-3 text-muted">&copy; {{params['blog_name']}} 2020-2023</p>
+    </form>
+
+  </body>
+</html>
+
