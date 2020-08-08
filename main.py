@@ -93,8 +93,8 @@ def dashboard():
     return render_template('login.html', params=params)
 
 
-@app.route("/edit/<string:sno>", methods = ['GET', 'POST'])
-def edit(sno):
+@app.route("/add/<string:sno>", methods = ['GET', 'POST'])
+def Add(sno):
     if 'user' in session and session['user']==params['admin_user']:
         if request.method=='POST':
             box_title =request.form.get('title')
@@ -109,7 +109,21 @@ def edit(sno):
                 post=Posts(title=box_title,slug=slug,content=content,tagline=tline,img_file=img_file,date=date)
                 db.session.add(post)
                 db.session.commit()
-            else:
+
+        return render_template("add.html",params=params,sno=sno)
+
+@app.route("/edit/<string:sno>", methods = ['GET', 'POST'])
+def edit(sno):
+    if 'user' in session and session['user'] == params['admin_user']:
+        if request.method == 'POST':
+            box_title = request.form.get('title')
+            tline = request.form.get('tline')
+            slug = request.form.get('slug')
+            content = request.form.get('content')
+            img_file = request.form.get('img_file')
+            date = datetime.now()
+            if sno!='0':
+
                 post=Posts.query.filter_by(sno=sno).first()
                 post.title=box_title
                 post.slug=slug
@@ -120,7 +134,7 @@ def edit(sno):
                 db.session.commit()
                 return redirect('/edit/'+sno)
         post = Posts.query.filter_by(sno=sno).first()
-        return render_template("edit.html",params=params,post=post)
+        return render_template("edit.html", params=params, post=post)
 
 @app.route("/uploader", methods=['GET', 'POST'])
 def uploader():
