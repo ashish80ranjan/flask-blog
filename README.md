@@ -1,2 +1,2 @@
-# flask-blog
-this is my first backend  development with code with harry
+# Flask-blog
+This is my first backend development project in flask framework with code with harry
